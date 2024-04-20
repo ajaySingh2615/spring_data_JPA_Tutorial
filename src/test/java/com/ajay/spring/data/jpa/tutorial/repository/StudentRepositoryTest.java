@@ -62,6 +62,28 @@ public class StudentRepositoryTest implements StudentRepository {
         System.out.println("studentList: " + studentList);
     }
 
+    @Test
+    public void printStudentByFirstName(){
+        List<Student> students = studentRepository.findByFirstName("shivam");
+
+        System.out.println("students: " + students);
+    }
+
+    @Test
+    public void printStudentByFirstNameContaining(){
+        List<Student> students = studentRepository.findByFirstNameContaining("s");
+
+        System.out.println("students: " + students);
+    }
+
+    @Test
+    public void printStudentNameBasedOnGuardianName(){
+        List<Student> students = studentRepository.findByGuardianName("parent");
+        System.out.println("students: " + students);
+    }
+
+
+
     @Override
     public <S extends Student> S save(S entity) {
         return null;
@@ -210,5 +232,25 @@ public class StudentRepositoryTest implements StudentRepository {
     @Override
     public Page<Student> findAll(Pageable pageable) {
         return null;
+    }
+
+    @Override
+    public List<Student> findByFirstName(String firstName) {
+        return List.of();
+    }
+
+    @Override
+    public List<Student> findByFirstNameContaining(String name) {
+        return List.of();
+    }
+
+    @Override
+    public List<Student> findByLastNameNotNull() {
+        return List.of();
+    }
+
+    @Override
+    public List<Student> findByGuardianName(String guardianName) {
+        return List.of();
     }
 }
