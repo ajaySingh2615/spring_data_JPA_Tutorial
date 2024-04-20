@@ -22,7 +22,7 @@ public class StudentRepositoryTest implements StudentRepository {
     private StudentRepository studentRepository;
 
     @Test
-    public void saveStudent(){
+    public void saveStudent() {
         Student student = Student.builder()
                 .email("ajay@gmail.com")
                 .firstName("ajay")
@@ -36,7 +36,7 @@ public class StudentRepositoryTest implements StudentRepository {
     }
 
     @Test
-    public void saveStudentWithGuardian(){
+    public void saveStudentWithGuardian() {
 
         Guardian guardian = Guardian.builder()
                 .email("guardian@gmail.com")
@@ -55,7 +55,7 @@ public class StudentRepositoryTest implements StudentRepository {
     }
 
     @Test
-    public void printAllStudents(){
+    public void printAllStudents() {
         List<Student> studentList =
                 studentRepository.findAll();
 
@@ -63,25 +63,40 @@ public class StudentRepositoryTest implements StudentRepository {
     }
 
     @Test
-    public void printStudentByFirstName(){
+    public void printStudentByFirstName() {
         List<Student> students = studentRepository.findByFirstName("shivam");
 
         System.out.println("students: " + students);
     }
 
     @Test
-    public void printStudentByFirstNameContaining(){
+    public void printStudentByFirstNameContaining() {
         List<Student> students = studentRepository.findByFirstNameContaining("s");
 
         System.out.println("students: " + students);
     }
 
     @Test
-    public void printStudentNameBasedOnGuardianName(){
+    public void printStudentNameBasedOnGuardianName() {
         List<Student> students = studentRepository.findByGuardianName("parent");
         System.out.println("students: " + students);
     }
 
+    @Test
+    public void printGetStudentByEmailAddress() {
+        Student student = studentRepository.getStudentByEmailAddress(
+                "shivam@gmail.com"
+        );
+        System.out.println("student: " + student);
+    }
+
+    @Test
+    public void printGetStudentFirstNameByEmailAddress() {
+        String firstName = studentRepository.getStudentFirstNameByEmailAddress(
+                "shivam@gmail.com"
+        );
+        System.out.println("firstName: " + firstName);
+    }
 
 
     @Override
@@ -252,5 +267,20 @@ public class StudentRepositoryTest implements StudentRepository {
     @Override
     public List<Student> findByGuardianName(String guardianName) {
         return List.of();
+    }
+
+    @Override
+    public List<Student> findByFirstNameAndLastName(String firstName, String lastName) {
+        return List.of();
+    }
+
+    @Override
+    public Student getStudentByEmailAddress(String email) {
+        return null;
+    }
+
+    @Override
+    public String getStudentFirstNameByEmailAddress(String email) {
+        return "";
     }
 }
