@@ -110,6 +110,12 @@ public class StudentRepositoryTest implements StudentRepository {
         System.out.println("student: " + student);
     }
 
+    @Test
+    public void testUpdateStudentNameByEmail(){
+        studentRepository.updateStudentNameByEmail("ajay singh thakur", "ajay@gmail.com");
+
+    }
+
 
     @Override
     public <S extends Student> S save(S entity) {
@@ -304,5 +310,10 @@ public class StudentRepositoryTest implements StudentRepository {
     @Override
     public Student getStudentByEmailAddressNativeNamedParams(String email) {
         return null;
+    }
+
+    @Override
+    public int updateStudentNameByEmail(String firstName, String email) {
+        return 0;
     }
 }
