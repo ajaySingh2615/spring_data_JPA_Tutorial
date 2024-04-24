@@ -1,6 +1,7 @@
 package com.ajay.spring.data.jpa.tutorial.repository;
 
 import com.ajay.spring.data.jpa.tutorial.entity.Course;
+import com.ajay.spring.data.jpa.tutorial.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,5 +21,22 @@ class CourseRepositoryTest {
         List<Course> courses = courseRepository.findAll();
 
         System.out.println("Courses: " + courses);
+    }
+
+    @Test
+    public void saveCourseWithTeacher(){
+
+        Teacher teacher = Teacher.builder()
+                .firstName("Diksha")
+                .lastName("Singh")
+                .build();
+
+        Course course = Course.builder()
+                .courseTitle("Python5")
+                .credit(6)
+                .teacher(teacher)
+                .build();
+
+        courseRepository.save(course);
     }
 }
