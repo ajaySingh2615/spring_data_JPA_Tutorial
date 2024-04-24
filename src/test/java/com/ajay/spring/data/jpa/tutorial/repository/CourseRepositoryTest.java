@@ -5,7 +5,10 @@ import com.ajay.spring.data.jpa.tutorial.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,4 +42,41 @@ class CourseRepositoryTest {
 
         courseRepository.save(course);
     }
+
+    @Test
+    public void findAllPagination(){
+        PageRequest firstPageWithThreeRecords = PageRequest.of(0, 3);
+        PageRequest SecondPageWithTwoRecords =  PageRequest.of(1, 2);
+
+        List<Course> courses = courseRepository.findAll((org.springframework.data.domain.Pageable) firstPageWithThreeRecords).getContent();
+
+        Long totalElements = courseRepository.findAll((org.springframework.data.domain.Pageable) firstPageWithThreeRecords).getTotalElements();
+
+        Long totalPages = (long) courseRepository.findAll((org.springframework.data.domain.Pageable) firstPageWithThreeRecords).getTotalPages();
+
+        System.out.println("totalPages: " + totalPages);
+
+        System.out.println("Total elements: " + totalElements);
+        System.out.println("Courses: " + courses);
+    }
+
+//    @Test
+//    public void findAllSorting(){
+//        PageRequest sortByTitle = PageRequest.of(0, 2, Sort.by("course_title"));
+//        PageRequest sortByCredit = PageRequest.of(0, 2, Sort.by("credit").descending());
+//        PageRequest sortByTitleAndCreditDesc = PageRequest.of(0, 2, Sort.by("title").descending().and(Sort.by("credit")));
+//
+//        List<Course> courses = courseRepository.findAll(sortByTitle).getContent();
+//
+//        System.out.println("Courses: " + courses);
+//    }
+
+//    @Test
+//    public void printByTitleContaining(){
+//        PageRequest firstPageTenRecords = PageRequest.of(0, 10);
+//
+//        List<Course> courses = courseRepository.findbyTitleContaining("D", firstPageTenRecords).getContent();
+//
+//        System.out.println("Courses: " + courses);
+//    }
 }
