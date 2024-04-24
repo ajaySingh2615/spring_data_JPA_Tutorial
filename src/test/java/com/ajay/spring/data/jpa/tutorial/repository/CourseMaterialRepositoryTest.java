@@ -20,12 +20,12 @@ class CourseMaterialRepositoryTest {
     public void courseMaterialRepositoryTest() {
 
         Course course = Course.builder()
-                .courseTitle("DSA")
+                .courseTitle(".net")
                 .credit(6)
                 .build();
 
         CourseMaterial courseMaterial = CourseMaterial.builder()
-                .url("https://www.google.com")
+                .url("https://www.yahoo.com")
                 .course(course)
                 .build();
 
