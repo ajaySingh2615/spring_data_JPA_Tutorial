@@ -1,6 +1,7 @@
 package com.ajay.spring.data.jpa.tutorial.repository;
 
 import com.ajay.spring.data.jpa.tutorial.entity.Course;
+import com.ajay.spring.data.jpa.tutorial.entity.Student;
 import com.ajay.spring.data.jpa.tutorial.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,4 +80,30 @@ class CourseRepositoryTest {
 //
 //        System.out.println("Courses: " + courses);
 //    }
+
+    @Test
+    public void saveCourseWithStudentAndTeacher(){
+
+        Teacher teacher = Teacher.builder()
+                .firstName("shiv")
+                .lastName("kumar")
+                .build();
+
+        Student student = Student.builder()
+                .firstName("mike")
+                .lastName("singh")
+                .email("mike@gmail.com")
+                .build();
+
+
+        Course course = Course.builder()
+                .courseTitle("AI")
+                .credit(12)
+                .teacher(teacher)
+                .build();
+
+        course.addStudent(student);
+
+        courseRepository.save(course);
+    }
 }

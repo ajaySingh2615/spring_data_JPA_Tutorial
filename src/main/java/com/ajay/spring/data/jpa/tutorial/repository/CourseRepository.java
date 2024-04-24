@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
-    Page<Course> findbyTitleContaining(String title, PageRequest pageRequest);
+//    Page<Course> findbyTitleContaining(String title, PageRequest pageRequest);
 
 }
