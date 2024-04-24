@@ -98,6 +98,12 @@ public class StudentRepositoryTest implements StudentRepository {
         System.out.println("firstName: " + firstName);
     }
 
+    @Test
+    public void printGetStudentByEmailAddressNative(){
+        Student student = studentRepository.getStudentByEmailAddressNative("shivam@gmail.com");
+        System.out.println("student: " + student);
+    }
+
 
     @Override
     public <S extends Student> S save(S entity) {
@@ -282,5 +288,10 @@ public class StudentRepositoryTest implements StudentRepository {
     @Override
     public String getStudentFirstNameByEmailAddress(String email) {
         return "";
+    }
+
+    @Override
+    public Student getStudentByEmailAddressNative(String email) {
+        return null;
     }
 }
